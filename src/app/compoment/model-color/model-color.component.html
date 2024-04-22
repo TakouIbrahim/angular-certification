@@ -1,0 +1,44 @@
+<h1 class="mb-20">Step 1: Choose your Model and color</h1>
+<div class="d-flex flex-row">
+  <div>
+    <span>Model</span>
+    <select
+      name=""
+      id="modelSelect"
+      formControleName="model"
+      (change)="selectedModel($any($event.target).value)"
+    >
+      <option value=""></option>
+      @for(model of models$ |async; track model.code){
+
+      <option
+        value="{{ model.code }}"
+        [selected]="model.code === activedModel?.code"
+      >
+        {{ model.description }}
+      </option>
+      }
+    </select>
+  </div>
+  <div class="ml-20">
+    <span>Color</span>
+    <select
+      name=""
+      id="colorSelect"
+      (change)="selectedColor($any($event.target).value)"
+    >
+      @for(color of activedModel?.colors ; track color.code){
+      <option
+        value="{{ color.code }}"
+        [selected]="color.code === aditionalOption.color?.code"
+      >
+        {{ color.description }}
+      </option>
+
+      }
+    </select>
+  </div>
+</div>
+<div class="d-flex flex-columm">
+  <img [src]="imgUrl" alt="" />
+</div>

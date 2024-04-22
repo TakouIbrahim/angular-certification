@@ -1,0 +1,51 @@
+<h1 class="mb-20">Step 2: Select your config and options</h1>
+<div class="d-flex flex-columm">
+  <div>
+    <span>Model</span>
+    <select
+      name=""
+      id="configSelect"
+      (change)="selectedOption($any($event.target).value)"
+    >
+      <option value=""></option>
+      @for(config of option?.configs; track config){
+      <option
+        value="{{ config.id }}"
+        [selected]="config.id === activedConfig?.id"
+      >
+        {{ config.description }}
+      </option>
+      }
+    </select>
+    @if(activedConfig?.id){
+    <div class="m-20">
+      <h3>
+        Range: {{ activedConfig?.range }} milles - Max Speed:
+        {{ activedConfig?.speed }} - Price {{ activedConfig?.price | currency }}
+      </h3>
+    </div>
+    } @if(option?.towHitch){
+    <div>
+      Tow Hitch ?
+      <input
+        type="checkbox"
+        id="includeTow"
+        [checked]="aditionalOption.towHitch"
+        (change)="towHitchClick($any($event.target).checked)"
+      />
+    </div>
+
+    } @if(option?.yoke){
+    <div>
+      Yoke steering wheel ?
+      <input
+        type="checkbox"
+        id="includeYoke"
+        [checked]="aditionalOption.yoke"
+        (change)="yokeClick($any($event.target).checked)"
+      />
+    </div>
+
+    }
+  </div>
+</div>

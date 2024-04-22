@@ -1,0 +1,47 @@
+<div class="m-20">
+  <h1>Step 3: Summary</h1>
+  <h2>Your Tesla Cybertruck</h2>
+
+  <table class="m-20">
+    <tr>
+      <td>
+        {{ activedConfig?.description }}
+      </td>
+      <td>{{ activedConfig?.price | currency }}</td>
+    </tr>
+    <tr>
+      <td>
+        Range {{ activedConfig?.range }} miles - Max speed:
+        {{ activedConfig?.speed }}
+      </td>
+      <td></td>
+    </tr>
+
+    @if(aditionalOption.color?.price){
+    <tr>
+      <td>{{ aditionalOption.color?.description }}</td>
+      <td>{{ aditionalOption.color?.price | currency }}</td>
+    </tr>
+    } @if(aditionalOption.towHitch){
+    <tr>
+      <td>Tow Hitch Package</td>
+      <td>{{ 1000 | currency }}</td>
+    </tr>
+    } @if(aditionalOption.yoke){
+    <tr>
+      <td>Yoke Package</td>
+      <td>{{ 1000 | currency }}</td>
+    </tr>
+    }
+    <tr>
+      <td>TOTAL COST</td>
+      <td>
+        {{ totalPrice | currency }}
+      </td>
+    </tr>
+  </table>
+
+  <div class="d-flex flex-columm">
+    <img [src]="imgUrl" alt="" width="500" />
+  </div>
+</div>
